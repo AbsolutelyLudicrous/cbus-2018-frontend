@@ -9,7 +9,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="See Saved Events" />
+        android:text="See Reccomended Events" />
 
     <Button
         android:id="@+id/button2"
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.example.rgs.listfragmentdemo.MyListFragment"
+        android:name="com.example.rgs.listfragmentdemo.secondListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -13,9 +13,9 @@ public class DisplayElementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_element);
 
         Intent intent = getIntent();
-        String message = "Woohoo this worked";
+        //String message = "Woohoo this worked";
 
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
+        //TextView textView = findViewById(R.id.textView);
+        //textView.setText(message);
     }
 }

@@ -7,12 +7,62 @@
     tools:context=".DisplayElementActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="188dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="96dp"
-        android:text="TextView"
+        android:id="@+id/Owner"
+        android:layout_width="173dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="50dp"
+        android:text="owner"
+        app:layout_constraintBottom_toTopOf="@+id/contents"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contents"
+        android:layout_width="175dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="19dp"
+        android:text="contents"
+        app:layout_constraintBottom_toTopOf="@+id/comments-label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Owner" />
+
+    <TextView
+        android:id="@+id/comments-label"
+        android:layout_width="173dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
+        android:text="Comments Section"
+        app:layout_constraintBottom_toTopOf="@+id/comments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contents"
+        tools:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/comments"
+        android:layout_width="186dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="27dp"
+        android:text="comments"
+        app:layout_constraintBottom_toTopOf="@+id/go"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comments-label" />
+
+    <Button
+        android:id="@+id/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:text="RSVP/Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comments" />
 </android.support.constraint.ConstraintLayout>

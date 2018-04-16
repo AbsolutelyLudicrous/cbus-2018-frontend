@@ -16,12 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayElementActivity"
+        <activity
+            android:name=".DisplayElementActivity"
             android:parentActivityName=".MainActivity">
-         <meta-data
-             android:name="android.support.PARENT_ACTIVITY"
-             android:value=".MainActivity" />
-            </activity>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".upcoming_events" />
+        <activity android:name=".Interact_element"></activity>
     </application>
 
 </manifest>

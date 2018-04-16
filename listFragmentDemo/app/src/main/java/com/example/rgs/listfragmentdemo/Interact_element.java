@@ -7,14 +7,14 @@ import android.view.View;
 import android.content.Intent;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Interact_element extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_interact_element);
 
-        final Button button = findViewById(R.id.button);
+        final Button button = findViewById(R.id.back_button);
         final Intent intent = new Intent(this, upcoming_events.class);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

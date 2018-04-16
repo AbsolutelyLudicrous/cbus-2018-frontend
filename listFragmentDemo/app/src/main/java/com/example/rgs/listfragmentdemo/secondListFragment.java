@@ -15,11 +15,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import android.content.Intent;
 
-public class MyListFragment extends ListFragment implements OnItemClickListener {
+public class secondListFragment extends ListFragment implements OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.list_fragment, container, false);
+        View view = inflater.inflate(R.layout.second_list_fragment, container, false);
         return view;
     }
 
@@ -45,7 +45,7 @@ public class MyListFragment extends ListFragment implements OnItemClickListener 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
         //Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getActivity(), DisplayElementActivity.class);
+        Intent intent = new Intent(getActivity(), Interact_element.class);
         startActivity(intent);
     }
 }
