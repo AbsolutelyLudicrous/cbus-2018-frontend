@@ -24,7 +24,8 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".upcoming_events" />
-        <activity android:name=".Interact_element"></activity>
+        <activity android:name=".Interact_element" />
+        <activity android:name=".createEvent"></activity>
     </application>
 
 </manifest>

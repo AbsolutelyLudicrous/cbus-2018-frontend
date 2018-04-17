@@ -14,11 +14,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button button = findViewById(R.id.button);
+        final Button upcoming_button = findViewById(R.id.button);
         final Intent intent = new Intent(this, upcoming_events.class);
-        button.setOnClickListener(new View.OnClickListener() {
+        upcoming_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(intent);
+            }
+        });
+
+        final Button createEvent_button = findViewById(R.id.button2);
+        final Intent newIntent = new Intent(this, createEvent.class);
+        createEvent_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(newIntent);
             }
         });
     }

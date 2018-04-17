@@ -15,7 +15,7 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="See Account Settings" />
+        android:text="CREATE AN EVENT" />
 
     <fragment
         android:id="@+id/fragment1"

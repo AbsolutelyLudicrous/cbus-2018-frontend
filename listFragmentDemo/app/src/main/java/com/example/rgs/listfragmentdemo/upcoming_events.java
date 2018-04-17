@@ -13,11 +13,19 @@ public class upcoming_events extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upcoming_events);
 
-        final Button button = findViewById(R.id.button);
+        final Button reccomended_button = findViewById(R.id.button);
         final Intent intent = new Intent(this, MainActivity.class);
-        button.setOnClickListener(new View.OnClickListener() {
+        reccomended_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(intent);
+            }
+        });
+
+        final Button createEvent_button = findViewById(R.id.button2);
+        final Intent newIntent = new Intent(this, createEvent.class);
+        createEvent_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(newIntent);
             }
         });
     }
