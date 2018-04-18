@@ -18,7 +18,7 @@ public class preferencesManager {
         return "demo-user";
     }
 
-    public static void append_tag(Context context, String tags) throws IOException {
+    public static void append_tag(String tags) throws IOException {
         try {
 
             FileInputStream fis = new FileInputStream("Tags.txt");
@@ -40,7 +40,7 @@ public class preferencesManager {
 
         } catch (FileNotFoundException e) {
             //create the file
-            FileOutputStream fout = new FileOutputStream(new File(context.getFilesDir(), "Tags.txt"));
+            FileOutputStream fout = new FileOutputStream(new File( "Tags.txt"));
             fout.write(tags.getBytes());
             fout.close();
 
@@ -48,14 +48,14 @@ public class preferencesManager {
 
     }
 
-    public static void append_event(Context context, String PUUID) throws IOException {
+    public static void append_event(String PUUID) throws IOException {
         try {
             FileOutputStream fos = new FileOutputStream("Events.txt", true);
             String input = " " + PUUID;
             fos.write(input.getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            FileOutputStream fos = new FileOutputStream(new File(context.getFilesDir(), "Events.txt"));
+            FileOutputStream fos = new FileOutputStream(new File( "Events.txt"));
             String input = " " + PUUID;
             fos.write(input.getBytes());
             fos.close();

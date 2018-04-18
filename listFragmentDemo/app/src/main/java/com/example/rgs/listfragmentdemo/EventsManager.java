@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -206,7 +208,7 @@ public class EventsManager {
         os.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("POST Response Code :: " + responseCode);
+        //System.out.println("POST Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
@@ -224,7 +226,7 @@ public class EventsManager {
 
     }
 
-    private static String sendGET(String tags) throws IOException {
+    public static JSONArray getEventsByTags(String tags) throws IOException {
         URL obj = new URL("http://cutie-computie.org/get-events-by-tag/tags=" + tags);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -249,7 +251,52 @@ public class EventsManager {
             System.out.println("GET request not worked");
         }
 
-        return response.toString();
+        JSONArray ja = new JSONArray();
+        try {
+            ja = new JSONArray(response.toString());
+        } catch (JSONException e){
+            System.out.println(e);
+        }
+
+
+        return ja;
+
+    }
+
+    public static JSONObject getEventByPUUID(String PUUID) throws IOException {
+        URL obj = new URL("http://cutie-computie.org/get-event/PUUID=" + PUUID);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent", "Safari/11.0.3");
+        int responseCode = con.getResponseCode();
+        System.out.println("GET Response Code :: " + responseCode);
+        StringBuilder response = new StringBuilder();
+        if (responseCode == HttpURLConnection.HTTP_OK) { // success
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    con.getInputStream()));
+            String inputLine;
+
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine + "\n");
+            }
+            in.close();
+
+            // print result
+            System.out.println(response.toString());
+        } else {
+            System.out.println("GET request not worked");
+        }
+
+        JSONObject jo = new JSONObject();
+        try {
+            jo = new JSONObject(response.toString());
+        } catch (JSONException e){
+            System.out.println(e);
+        }
+
+
+        return jo;
 
     }
 
