@@ -64,10 +64,10 @@ public class MyListFragment extends ListFragment implements OnItemClickListener 
 
 
 
-        ArrayAdapter<String> abc_adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, abcArray);
-        ArrayAdapter<String> events_adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, abcArray);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.Planets, android.R.layout.simple_list_item_1);
+        //ArrayAdapter<String> abc_adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, abcArray);
+        ArrayAdapter<String> events_adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, eventsList);
+        //ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
+                //R.array.Planets, android.R.layout.simple_list_item_1);
         setListAdapter(events_adapter);
         getListView().setOnItemClickListener(this);
     }

@@ -19,7 +19,7 @@ public class EventsManager {
 
     public static void addUser(String username, String realname, String password) throws IOException {
 
-        URL obj = new URL("http://cutie-computie.org:808/signup");
+        URL obj = new URL("https://cutie-computie.org:808/signup");
         JSONObject theJSON = new JSONObject();
 
 
@@ -70,7 +70,7 @@ public class EventsManager {
 
     public static void addPost(String username, String password, String title, String contents, String tags) throws IOException {
 
-        URL obj = new URL("http://cutie-computie.org/add-post");
+        URL obj = new URL("https://cutie-computie.org/add-post");
         JSONObject theJSON = new JSONObject();
 
 
@@ -91,7 +91,7 @@ public class EventsManager {
 
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", "Safari/11.0.3");
+        //con.setRequestProperty("User-Agent", "Safari/11.0.3");
         con.setRequestProperty("Content-Type", "application/json");
         con.setDoOutput(true);
         OutputStream os = con.getOutputStream();
@@ -123,7 +123,7 @@ public class EventsManager {
 
     public static void RSVP(String username, String password, String PUUID) throws IOException {
 
-        URL obj = new URL("http://cutie-computie.org/RSVP");
+        URL obj = new URL("https://cutie-computie.org/RSVP");
         JSONObject theJSON = new JSONObject();
 
 
@@ -175,7 +175,7 @@ public class EventsManager {
 
     public static void comment(String username, String password, String PUUID, String comments) throws IOException {
 
-        URL obj = new URL("http://cutie-computie.org/comment");
+        URL obj = new URL("https://cutie-computie.org/comment");
         JSONObject theJSON = new JSONObject();
 
 
@@ -227,7 +227,7 @@ public class EventsManager {
     }
 
     public static JSONArray getEventsByTags(String tags) throws IOException {
-        URL obj = new URL("http://cutie-computie.org/get-events-by-tag/tags=" + tags);
+        URL obj = new URL("https://cutie-computie.org/get-events-by-tag/tags=" + tags);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", "Safari/11.0.3");
@@ -264,7 +264,7 @@ public class EventsManager {
     }
 
     public static JSONObject getEventByPUUID(String PUUID) throws IOException {
-        URL obj = new URL("http://cutie-computie.org/get-event/PUUID=" + PUUID);
+        URL obj = new URL("https://cutie-computie.org/get-event/PUUID=" + PUUID);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", "Safari/11.0.3");

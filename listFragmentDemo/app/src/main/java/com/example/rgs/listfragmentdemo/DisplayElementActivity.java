@@ -71,6 +71,7 @@ public class DisplayElementActivity extends AppCompatActivity {
                 try {
                     preferencesManager.append_event(PUUID);
                     preferencesManager.append_tag(tags);
+                    EventsManager.RSVP(preferencesManager.getUsername(), preferencesManager.getPassword(), PUUID);
                 } catch (IOException e) {
                     System.out.println(e);
                 }
