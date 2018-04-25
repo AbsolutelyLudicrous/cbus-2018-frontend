@@ -39,22 +39,37 @@ public class MyListFragment extends ListFragment implements OnItemClickListener 
         abcArray[2] = "C";
         */
 
-        JSONArray ja = new JSONArray();
 
-        try {
-            ja = EventsManager.getEventsByTags(preferencesManager.get_tags());
-        } catch (java.io.IOException e) {
-            System.out.println(e);
-        }
 
-        MyListFragment.list_of_events = ja;
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    //Your code goes here
+                    try {
+                        MyListFragment.list_of_events = EventsManager.getEventsByTags(preferencesManager.get_tags());
+                    } catch (java.io.IOException e) {
+                        System.out.println(e);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
+
+
+
         //so that onItemClick() can access it
 
         ArrayList<String> eventsList = new ArrayList<>();
         String response;
-        for (int i = 0; i < ja.length(); i++) {
+        for (int i = 0; i < MyListFragment.list_of_events.length(); i++) {
             try {
-                eventsList.add(ja.getJSONObject(i).getString("title"));
+                eventsList.add(MyListFragment.list_of_events.getJSONObject(i).getString("title"));
             } catch (JSONException e) {
                 System.out.println(e);
             }
