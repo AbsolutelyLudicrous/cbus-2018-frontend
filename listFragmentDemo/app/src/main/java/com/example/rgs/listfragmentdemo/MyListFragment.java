@@ -27,7 +27,7 @@ public class MyListFragment extends ListFragment implements OnItemClickListener 
     }
 
 
-    public static JSONArray list_of_events;
+    public static JSONArray list_of_events = new JSONArray();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -64,6 +64,12 @@ public class MyListFragment extends ListFragment implements OnItemClickListener 
 
 
         //so that onItemClick() can access it
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            
+        }
 
         ArrayList<String> eventsList = new ArrayList<>();
         String response;

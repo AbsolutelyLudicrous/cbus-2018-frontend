@@ -10,6 +10,7 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
 
 
 
@@ -230,7 +231,7 @@ public class EventsManager {
     }
 
     public static JSONArray getEventsByTags(String tags) throws IOException {
-        URL obj = new URL("https://cutie-computie.org/get-events-by-tag/tags=" + tags);
+        URL obj = new URL("http://cutie-computie.org:808/get-events-by-tag/tags=" + tags);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", "Safari/11.0.3");
@@ -255,11 +256,14 @@ public class EventsManager {
         }
 
         JSONArray ja = new JSONArray();
+        Log.w("listFragmentDemo", response.toString());
         try {
             ja = new JSONArray(response.toString());
         } catch (JSONException e){
             System.out.println(e);
         }
+
+        Log.w("listFragmentDemo", ja.toString());
 
 
         return ja;
@@ -267,7 +271,7 @@ public class EventsManager {
     }
 
     public static JSONObject getEventByPUUID(String PUUID) throws IOException {
-        URL obj = new URL("https://cutie-computie.org/get-event/PUUID=" + PUUID);
+        URL obj = new URL("http://cutie-computie.org/get-event/PUUID=" + PUUID);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", "Safari/11.0.3");

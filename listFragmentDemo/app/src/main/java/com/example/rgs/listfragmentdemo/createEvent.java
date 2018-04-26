@@ -31,15 +31,25 @@ public class createEvent extends AppCompatActivity {
         final Button create_button = findViewById(R.id.submit_button);
         create_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String name = event_name.getText().toString();
-                String contents = event_contents.getText().toString();
-                String tags = event_tags.getText().toString();
+                final String name = event_name.getText().toString();
+                final String contents = event_contents.getText().toString();
+                final String tags = event_tags.getText().toString();
 
-                try {
-                    EventsManager.addPost(preferencesManager.getUsername(), preferencesManager.getPassword(), name, contents, tags);
-                } catch (IOException e) {
-                    System.out.println(e);
-                }
+
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            EventsManager.addPost(preferencesManager.getUsername(), preferencesManager.getPassword(), name, contents, tags);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
 
                 startActivity(intent);
             }

@@ -71,7 +71,21 @@ public class DisplayElementActivity extends AppCompatActivity {
                 try {
                     preferencesManager.append_event(PUUID);
                     preferencesManager.append_tag(tags);
-                    EventsManager.RSVP(preferencesManager.getUsername(), preferencesManager.getPassword(), PUUID);
+                    Thread thread = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            try  {
+                                //Your code goes here
+                                EventsManager.RSVP(preferencesManager.getUsername(), preferencesManager.getPassword(), PUUID);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    thread.start();
+
                 } catch (IOException e) {
                     System.out.println(e);
                 }

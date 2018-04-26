@@ -28,7 +28,7 @@ public class secondListFragment extends ListFragment implements OnItemClickListe
     }
 
 
-    public static JSONArray list_of_events;
+    public static JSONArray list_of_events = new JSONArray();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -44,27 +44,37 @@ public class secondListFragment extends ListFragment implements OnItemClickListe
         //ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
                 //R.array.Planets, android.R.layout.simple_list_item_1);
 
-        JSONArray ja = new JSONArray();
-        String[] list_PUUID;
 
-        try {
-            list_PUUID = preferencesManager.get_events();
-            for (int i = 0; i < list_PUUID.length; i++) {
-                ja.put(EventsManager.getEventByPUUID(list_PUUID[i]));
+
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    //Your code goes here
+                    String[] list_PUUID = preferencesManager.get_events();
+                    for (int i = 0; i < list_PUUID.length; i++) {
+                        secondListFragment.list_of_events.put(EventsManager.getEventByPUUID(list_PUUID[i]));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+        });
 
-        } catch (java.io.IOException e) {
-            System.out.println(e);
-        }
+        thread.start();
 
-        secondListFragment.list_of_events = ja;
+
+
+
         //so that onItemClick() can access it
 
         ArrayList<String> eventsList = new ArrayList<>();
         String response;
-        for (int i = 0; i < ja.length(); i++) {
+        for (int i = 0; i < secondListFragment.list_of_events.length(); i++) {
             try {
-                eventsList.add(ja.getJSONObject(i).getString("title"));
+                eventsList.add(secondListFragment.list_of_events.getJSONObject(i).getString("title"));
             } catch (JSONException e) {
                 System.out.println(e);
             }

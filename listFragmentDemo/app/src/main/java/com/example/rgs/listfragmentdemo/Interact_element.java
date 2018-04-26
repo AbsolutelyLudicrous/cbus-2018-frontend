@@ -18,6 +18,9 @@ import java.io.IOException;
 
 public class Interact_element extends AppCompatActivity {
 
+    public static JSONObject jo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,23 +68,46 @@ public class Interact_element extends AppCompatActivity {
         sendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user_comment = (String) user_comment_edittext.getText().toString();
+                final String user_comment = (String) user_comment_edittext.getText().toString();
                 try {
-                    EventsManager.comment(preferencesManager.getUsername(), preferencesManager.getPassword(), PUUID, user_comment);
+                    Thread thread = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            try  {
+                                //Your code goes here
+                                EventsManager.comment(preferencesManager.getUsername(), preferencesManager.getPassword(), PUUID, user_comment);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    thread.start();
+
                     Intent intent = new Intent(Interact_element.this, Interact_element.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    JSONObject jo = new JSONObject();
+
 
                     String new_comments = "";
-                    try {
-                        jo = EventsManager.getEventByPUUID(PUUID);
-                        new_comments = jo.getString("comments");
-                    } catch (java.io.IOException e) {
-                        System.out.println(e);
-                    } catch (JSONException e) {
-                        System.out.println(e);
-                    }
 
+                    Thread secondThread = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            try  {
+                                //Your code goes here
+                                Interact_element.jo = EventsManager.getEventByPUUID(PUUID);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    thread.start();
+
+
+                    new_comments = Interact_element.jo.getString("comments");
 
 
                     intent.putExtra("PUUID", PUUID);
@@ -95,7 +121,7 @@ public class Interact_element extends AppCompatActivity {
 
 
                     startActivity(intent);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     System.out.println(e);
                 }
             }
